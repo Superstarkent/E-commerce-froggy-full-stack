@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import  Order  from "../models/order";
 
@@ -26,14 +26,16 @@ export const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-export const getUserOrders = async (
+export async function getUserOrders(
   req: Request,
   res: Response,
-  next: Function
-) => {
-  const userId = req.params.userId;
+  next: NextFunction
+) {
+  const { userId } = req.params;
   try {
-    const userOrders = await Order.find({ userId: userId });
+  const userOrders = await Order.find({ userId: userId })
+    .populate("userId")
+    .populate("products");
     if (!userOrders) {
       throw new Error("User orders not found");
     }
@@ -44,4 +46,4 @@ export const getUserOrders = async (
   } catch (error) {
     next(error);
   }
-};
+}

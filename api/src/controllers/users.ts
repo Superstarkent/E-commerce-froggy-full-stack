@@ -8,11 +8,11 @@ export const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    //const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
-    const user = new User({ email, password: hashedPassword });
+    
+    const user = new User({ email, password /*hashedPassword*/ });
     await user.save();
 
     res.status(201).json({ message: "A new frog has registered succesfully ribbit" });
@@ -28,14 +28,12 @@ export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
-    // Find user by email
     const user: UserDocument | null = await User.findOne({ email });
 
     if (!user) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
-    // Compare the passwords
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (!validPassword) {
