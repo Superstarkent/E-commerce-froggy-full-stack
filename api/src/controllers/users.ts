@@ -9,10 +9,10 @@ export const register = async (req: Request, res: Response) => {
 
   try {
     
-    //const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     
-    const user = new User({ email, password /*hashedPassword*/ });
+    const user = new User({ email, password: hashedPassword });
     await user.save();
 
     res.status(201).json({ message: "A new frog has registered succesfully ribbit" });
