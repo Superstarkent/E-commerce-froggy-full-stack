@@ -4,5 +4,5 @@ import { createOrder, getUserOrders } from "../controllers/order";
 const router = Router();
 
 router.post("/", createOrder);
-router.get("/user/:userId", getUserOrders);
+router.get("/:userId", getOrdersByUserId);
 export default router;
