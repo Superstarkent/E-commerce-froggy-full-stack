@@ -1,5 +1,5 @@
 // product controller here
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import Product from "../models/Product";
 import {
@@ -7,8 +7,13 @@ import {
   getProductsService,
   getProductsByIdService,
 } from "../services/products";
+import { InternalServerError } from "../helpers/apiError";
 
-export const createProduct = async (req: Request, res: Response) => {
+export const createProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const productInformation = new Product({
       name: req.body.name,
@@ -21,10 +26,12 @@ export const createProduct = async (req: Request, res: Response) => {
     const product = await createProductService(productInformation);
     res.status(200).json(product);
   } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while creating the product" });
+    next(
+      new InternalServerError(
+        "An error occurred while creating the product",
+        error
+      )
+    );
   }
 };
 
