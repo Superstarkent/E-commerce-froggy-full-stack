@@ -21,16 +21,16 @@ export const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-export async function getUserOrdersId(
+export async function getOrdersByUserId(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   const { userId } = req.params;
   try {
-  const userOrders = await Order.find({ userId: userId })
-    .populate("userId")
-    .populate("products");
+    const userOrders = await Order.find({ userId: userId })
+      .populate("userId")
+      .populate("products");
     if (!userOrders) {
       throw new Error("User orders not found");
     }
