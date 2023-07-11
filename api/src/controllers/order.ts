@@ -1,18 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import mongoose from "mongoose";
 import  Order  from "../models/order";
 
 export const createOrder = async (req: Request, res: Response) => {
   try {
     const { userId, products } = req.body;
 
-    const productObjectIds = products.map((productId: string) =>
-     new mongoose.Types.ObjectId(productId)
-    );
-
     const order = new Order({
       userId,
-      products: productObjectIds,
+      products, 
     });
 
     const result = await order.save();
@@ -26,7 +21,7 @@ export const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-export async function getUserOrders(
+export async function getUserOrdersId(
   req: Request,
   res: Response,
   next: NextFunction
@@ -40,7 +35,6 @@ export async function getUserOrders(
       throw new Error("User orders not found");
     }
     res.status(200).json({
-      status: "success",
       data: userOrders,
     });
   } catch (error) {

@@ -4,7 +4,7 @@ import mongoose, { Collection, Document } from "mongoose";
 export type ProductDocument = Document & {
   name: string;
   price: number;
-  image: string;
+  image: string[];
   description: string;
   category: string;
   colors: string[];
@@ -21,7 +21,7 @@ const ProductSchema = new mongoose.Schema(
       required: true,
     },
     image: {
-      type: String,
+      type: [String],
     },
     description: {
       type: String,
