@@ -1,7 +1,7 @@
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import dotenv from "dotenv";
 
-import User from "../models/user";
+
 import { findUserByEmail } from "../services/users";
 
 

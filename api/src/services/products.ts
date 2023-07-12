@@ -26,6 +26,7 @@ export const getProductsByIdService = async (
 ): Promise<ProductDocument | undefined> => {
   try {
     const productById = await Product.findById(productId);
+      console.log(productById);
     if (productById) {
       return productById;
     } else {

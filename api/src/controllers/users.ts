@@ -44,7 +44,7 @@ export const login = async (req: Request, res: Response) => {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
-    const token = generateToken(user); // Use generateToken function to create JWT
+    const token = generateToken(user); 
 
     res.status(200).json({ message: "Frog logged in successfully", token });
   } catch (error) {
@@ -56,7 +56,7 @@ export const login = async (req: Request, res: Response) => {
 };
 
 export const updateUser = async (req: Request, res: Response) => {
-  const userId = req.params.userId; // Note the change here
+  const userId = req.params.userId; 
   const updateData = req.body;
 
   console.log(`User ID: ${userId}`);
