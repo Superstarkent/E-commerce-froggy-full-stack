@@ -31,9 +31,6 @@ export async function getOrdersByUserId(
     const userOrders = await Order.find({ userId: userId })
       .populate("userId")
       .populate("products");
-    if (!userOrders) {
-      throw new Error("User orders not found");
-    }
     res.status(200).json({
       data: userOrders,
     });
@@ -41,3 +38,4 @@ export async function getOrdersByUserId(
     next(error);
   }
 }
+

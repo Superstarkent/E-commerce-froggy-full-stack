@@ -13,3 +13,29 @@ export type ProductDetailsState = {
   loading: "idle" | "pending" | "succeeded" | "failed";
   error: string | null;
 };
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
+};
+
+export type CartState = {
+  items: CartItem[];
+  userId: string | null;
+};
+
+export type FavoriteState = {
+  favorites: Product[];
+  userId: string | null;
+};
+
+
+export type ProductsState = {
+  items: Product[];
+  loading: "idle" | "pending" | "succeeded" | "failed";
+  error: string | null;
+};
+
+export type Props = {
+  product: Product;
+};

@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 
 import logo from "../../images/Froglogo.png"
+import CartBadge from "../Cart/CartBadge";
 
 const Navbar: React.FC = () => {
   return (
     <div className="navbar">
       <div>
-        <img className="logo" src={logo} alt="logo" />
+        <Link to="/Home">
+          <img className="logo" src={logo} alt="logo" />
+        </Link>
       </div>
       <div className="navbar-items">
         <Link to="/login">
@@ -15,12 +18,20 @@ const Navbar: React.FC = () => {
         <Link to="/signup">
           <div>Signup</div>
         </Link>
-        <div>
-          <i className="fa-solid fa-heart"></i>
-        </div>
-        <div>
-          <i className="fa-solid fa-cart-shopping"></i>
-        </div>
+        <Link to="/user-profile">
+          <div>User Profile</div>
+        </Link>
+        <Link to="/WishList">
+          <div>
+            <i className="fa-solid fa-heart"></i>
+          </div>
+        </Link>
+        <Link to="/Checkout">
+          <div>
+            <i className="fa-solid fa-cart-shopping"></i>
+            <CartBadge />
+          </div>
+        </Link>
       </div>
     </div>
   );

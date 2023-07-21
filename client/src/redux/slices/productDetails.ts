@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ProductDetailsState } from "../../types/type";
 import { fetchProductDetailsApi } from "../thunk/productDetailsApi";
 
+
 const initialState: ProductDetailsState = {
   product: null,
   loading: "idle",
