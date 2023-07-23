@@ -1,4 +1,4 @@
-import Order, { OrderDocument } from "../models/order";
+import { OrderDocument } from "../models/order";
 
 export const createOrderService = async (
   order: OrderDocument

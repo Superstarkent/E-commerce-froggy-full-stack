@@ -1,3 +1,5 @@
+// favorites.ts
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product, FavoriteState } from "../../types/type";
 
@@ -33,10 +35,18 @@ export const favoriteSlice = createSlice({
       state.favorites = [];
       state.userId = null;
     },
+    setFavorites: (state, action: PayloadAction<Array<Product>>) => {
+      state.favorites = action.payload;
+    },
   },
 });
 
-export const { addToFavorites, removeFromFavorite, setUserId, clearFavorites } =
-  favoriteSlice.actions;
+export const {
+  addToFavorites,
+  removeFromFavorite,
+  setUserId,
+  clearFavorites,
+  setFavorites,
+} = favoriteSlice.actions;
 
 export default favoriteSlice.reducer;

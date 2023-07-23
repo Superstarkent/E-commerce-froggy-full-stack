@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -33,9 +33,11 @@ const SignUp = () => {
     dispatch(signupAsync({ username, email, password }));
   };
 
+useEffect(() => {
   if (isAuthenticated) {
     navigate("/");
   }
+}, [isAuthenticated, navigate]);
 
   return (
     <ThemeProvider theme={defaultTheme}>

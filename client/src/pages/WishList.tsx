@@ -6,7 +6,7 @@ import ProductItem from "../components/Products/ProductItem";
 
 const Wishlist: React.FC = () => {
   const favourites = useSelector(
-    (state: RootState) => state.favorites.favorites
+    (state: RootState) => state.favorite.favorites
   );
 
   return (

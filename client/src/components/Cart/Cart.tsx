@@ -5,10 +5,12 @@ import { Box, Button, Typography } from "@mui/material";
 import CartItem from "./CartItem";
 import { RootState } from "../../redux/store";
 import { clearCart } from "../../redux/slices/cart";
+import { saveUserDataToLocalStorage } from "../../redux/slices/user";
+import { AppDispatch } from "../../redux/store";
 
 const Cart: React.FC = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
@@ -18,6 +20,7 @@ const Cart: React.FC = () => {
   const handleCheckout = () => {
     alert("Items are being checked out by the best frogs!");
     dispatch(clearCart());
+    dispatch(saveUserDataToLocalStorage());
   };
 
   return (

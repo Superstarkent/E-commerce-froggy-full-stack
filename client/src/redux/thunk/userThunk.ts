@@ -1,30 +1,49 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { CartItem } from "../../types/type";
+import axios, { AxiosError } from "axios";
+import { CartItem, SignupData, LoginData } from "../../types/type";
 import { RootState } from "../store";
+import { setUserId as setCartUserId } from "../slices/cart";
+import { setUserId as setFavoritesUserId } from "../slices/favorites";
 
 export const signupAsync = createAsyncThunk(
   "user/signup",
-  async ({ username, email, password }: { username: string; email: string; password: string }) => {
-    const response = await axios.post("http://localhost:8000/users/register", {
-      username,
-      email,
-      password,
-    });
-
-    return response.data;
+  async (userData: SignupData, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/users/register",
+        userData
+      );
+      dispatch(setCartUserId(response.data.userId));
+      dispatch(setFavoritesUserId(response.data.userId));
+      return response.data;
+    } catch (err) {
+      if (err instanceof Error) {
+        let error: AxiosError = err as AxiosError;
+        return rejectWithValue(error.response?.data);
+      }
+      throw err; 
+    }
   }
 );
 
 export const loginAsync = createAsyncThunk(
   "user/login",
-  async ({ email, password }: { email: string; password: string }) => {
-    const response = await axios.post("http://localhost:8000/users/login", {
-      email,
-      password,
-    });
-
-    return response.data;
+  async (userData: LoginData, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/users/login",
+        userData
+      );
+      dispatch(setCartUserId(response.data.userId));
+      dispatch(setFavoritesUserId(response.data.userId));
+      return response.data;
+    } catch (err) {
+      if (err instanceof Error) {
+        let error: AxiosError = err as AxiosError;
+        return rejectWithValue(error.response?.data);
+      }
+      throw err; 
+    }
   }
 );
 
@@ -41,6 +60,11 @@ export const getUserAsync = createAsyncThunk(
   async (_, { getState }) => {
     const state = getState() as RootState; 
     const userId = state.user.userId;
+       const token = state.user.token;
+
+       if (!userId || !token) {
+         throw new Error("User is not logged in");
+       }
 
     const response = await axios.get(`http://localhost:8000/users/${userId}`, {
       headers: {
@@ -65,14 +89,5 @@ export const addProductToCartAsync = createAsyncThunk(
   }
 );
 
-export const loadUserCartAsync = createAsyncThunk(
-  "user/loadUserCart",
-  async (userId: string) => {
-    const response = await axios.get(
-      `http://localhost:8000/users/${userId}/cart`
-    );
-    return response.data;
-  }
-);
 
 

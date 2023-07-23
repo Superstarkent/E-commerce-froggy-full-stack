@@ -10,20 +10,24 @@ import {
 
 import { CartItem as CartItemType, Product } from "../../types/type";
 import { addToCart, removeFromCart } from "../../redux/slices/cart";
+import { saveUserDataToLocalStorage } from "../../redux/slices/user";
+import { AppDispatch } from "../../redux/store";
 
 type Props = {
   cartItem: CartItemType;
 };
 
 const CartItem: React.FC<Props> = ({ cartItem }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart(cartItem));
+    dispatch(saveUserDataToLocalStorage());
   };
 
   const handleRemoveFromCart = (productId: string) => {
     dispatch(removeFromCart(productId));
+    dispatch(saveUserDataToLocalStorage());
   };
 
   return (

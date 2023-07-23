@@ -25,15 +25,16 @@ function ProductDetails() {
     }
   }, [dispatch, id]);
 
-  const { product, loading, error } = useSelector(
-    (state: RootState) => state.productDetails
-  );
+const { product, loading, error } = useSelector(
+  (state: RootState) => state.productDetails
+);
+
 
  const handleAddToCart = () => {
    if (product) {
      const cartItem: CartItem = {
        product: product,
-       quantity: 1, // Adjust the quantity based on your application needs.
+       quantity: 1, 
      };
      dispatch(addToCart(cartItem));
    }

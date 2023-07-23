@@ -1,5 +1,6 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 import "./App.css";
 import Products from "./components/Products/Products";
@@ -12,9 +13,17 @@ import Wishlist from "./pages/WishList";
 import Checkout from "./pages/Checkout";
 import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
-import PrivateRoute from "./components/Routing/PrivateRoute"; // Import it
+import PrivateRoute from "./components/Routing/PrivateRoute"; 
+import { rehydrateUserData } from "./redux/slices/user"
+import { AppDispatch } from "./redux/store";
+
 
 function App() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(rehydrateUserData());
+  }, [dispatch]);
   return (
     <div className="App">
       <Navbar />
