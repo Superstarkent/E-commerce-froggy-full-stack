@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginAsync } from "../../redux/thunk/userThunk";
-import { selectUser } from "../../redux/slices/user";
+import { selectUser, rehydrateUserData } from "../../redux/slices/user";
 import { AppDispatch } from "../../redux/store";
 
 function Copyright(props: any) {
@@ -50,7 +50,9 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(loginAsync({ email, password }));
+    dispatch(loginAsync({ email, password })).then(() => {
+      dispatch(rehydrateUserData());
+    });
   };
 
   React.useEffect(() => {

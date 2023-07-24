@@ -6,8 +6,7 @@ import { RootState, AppDispatch, AppThunk } from "../store";
 import { setCart } from "./cart";
 import { setFavorites } from "./favorites";
 import { CartItem, Product } from "../../types/type";
-import { setUserId as setCartUserId } from "./cart";
-import { setUserId as setFavoritesUserId } from "./favorites";
+
 
 export interface UserState {
   userId: string | null;

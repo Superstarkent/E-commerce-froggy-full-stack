@@ -18,17 +18,22 @@ export const cartSlice = createSlice({
       );
 
       if (itemIndex >= 0) {
-        state.items[itemIndex].quantity += action.payload.quantity;
+        state.items[itemIndex].quantity += 1;
       } else {
-        state.items.push(action.payload);
+        state.items.push({ ...action.payload, quantity: 1 });
       }
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
-      const index = state.items.findIndex(
+      const itemIndex = state.items.findIndex(
         (item) => item.product._id === action.payload
       );
-      if (index !== -1) {
-        state.items.splice(index, 1);
+
+      if (itemIndex >= 0) {
+        if (state.items[itemIndex].quantity > 1) {
+          state.items[itemIndex].quantity--;
+        } else {
+          state.items.splice(itemIndex, 1);
+        }
       }
     },
     clearCart: (state) => {
