@@ -3,12 +3,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import "./App.css";
-import Products from "./components/Products/Products";
 import Navbar from "./components/Navbar/Navbar";
-import SignUp from "./components/Login/SignUp";
-import Login from "./components/Login/Login";
 import Footer from "./components/Footer/Footer";
-import ProductDetails from "./components/Products/ProductDetails";
 import Wishlist from "./pages/WishList";
 import Checkout from "./pages/Checkout";
 import Home from "./pages/Home";
@@ -16,6 +12,11 @@ import UserProfile from "./pages/UserProfile";
 import PrivateRoute from "./components/Routing/PrivateRoute"; 
 import { rehydrateUserData } from "./redux/slices/user"
 import { AppDispatch } from "./redux/store";
+import SignupPage from "./pages/Signup";
+import LoginPage from "./pages/Login";
+import Productspage from "./pages/Products";
+import ProductDetailsPage from "./pages/ProductDetails";
+import About from "./pages/About";
 
 
 function App() {
@@ -28,18 +29,19 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
+        <Route path="/products" element={<Productspage />} />
         <Route path="/Wishlist" element={<Wishlist />} />
         <Route path="/Checkout" element={<Checkout />} />
         <Route
           path="/user-profile"
           element={<PrivateRoute element={<UserProfile />} />}
         />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+<Route path="/about" element={<About />} />
       </Routes>
       <Footer />
     </div>

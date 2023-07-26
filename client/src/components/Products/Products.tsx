@@ -22,10 +22,10 @@ function Products() {
 
   return (
     <div>
-      <h1>Products</h1>
-      <Grid container spacing={3}>
+      <h1>All-range frog clothing</h1>
+      <Grid container spacing={2}>
         {products.map((product) => (
-          <Grid item xs={12} sm={6} md={4} key={product._id}>
+          <Grid item xs={6} sm={12} md={4} key={product._id}>
             <ProductItem product={product} />
           </Grid>
         ))}

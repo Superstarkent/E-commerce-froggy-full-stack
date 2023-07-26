@@ -1,7 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import imageone from "../images/frogseatingapples.png";
 import imagetwo from "../images/frogswithumbrellas.png";
+
+
+
 
 export default function Home() {
   return (
@@ -20,11 +22,9 @@ export default function Home() {
         <img src={imageone} alt="frogseatingapples" />
         <img src={imagetwo} alt="frogswithumbrellas" />
       </div>
-      <div>
-        <Link to="/products" className="btn btn-primary">
-          View our products here!
-        </Link>
-      </div>
+      <Link to="/products">
+        <button className="homepage-button">View our products here!</button>
+      </Link>
     </div>
   );
 }

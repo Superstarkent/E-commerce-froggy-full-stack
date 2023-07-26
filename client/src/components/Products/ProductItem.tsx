@@ -11,9 +11,12 @@ import FavoriteItem from "../Favorites/FavoriteItem";
 const ProductItem: React.FC<Props> = ({ product }) => {
   return (
     <div className="product-detail">
-      <Card sx={{ maxWidth: 600, backgroundColor: "#3F497F" }}>
+      <Card sx={{ maxWidth: 600, outline: 'none' }}>
         <CardActionArea>
-          <Link to={`/products/${product._id}`}>
+          <Link
+            to={`/products/${product._id}`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <CardMedia
               component="img"
               height="350"
@@ -27,7 +30,11 @@ const ProductItem: React.FC<Props> = ({ product }) => {
             </CardContent>
           </Link>
           <CardContent>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ fontWeight: "bold", fontSize: "20px" }}
+            >
               ${product.price}
             </Typography>
           </CardContent>
