@@ -5,13 +5,15 @@ import { CartItem, SignupData, LoginData } from "../../types/type";
 import { RootState } from "../store";
 import { setUserId as setCartUserId } from "../slices/cart";
 import { setUserId as setFavoritesUserId } from "../slices/favorites";
+import { baseUrl } from "../utils";
+
 
 export const signupAsync = createAsyncThunk(
   "user/signup",
   async (userData: SignupData, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/users/register",
+        `${baseUrl}/users/register`,
         userData
       );
       dispatch(setCartUserId(response.data.userId));
@@ -32,7 +34,7 @@ export const loginAsync = createAsyncThunk(
   async (userData: LoginData, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/users/login",
+        `${baseUrl}/users/login`,
         userData
       );
       dispatch(setCartUserId(response.data.userId));
@@ -51,7 +53,7 @@ export const loginAsync = createAsyncThunk(
 export const createOrderAsync = createAsyncThunk(
   "user/createOrder",
   async (order: { userId: string; products: CartItem[] }) => {
-    const response = await axios.post("http://localhost:8000/orders", order);
+    const response = await axios.post(`${baseUrl}/orders`, order);
     return response.data;
   }
 );
@@ -67,7 +69,7 @@ export const getUserAsync = createAsyncThunk(
          throw new Error("User is not logged in");
        }
 
-    const response = await axios.get(`http://localhost:8000/users/${userId}`, {
+    const response = await axios.get(`${baseUrl}/users/${userId}`, {
       headers: {
         Authorization: `Bearer ${state.user.token}`,
       },
@@ -80,7 +82,7 @@ export const addProductToCartAsync = createAsyncThunk(
   "user/addProductToCart",
   async ({ userId, productId }: { userId: string; productId: string }) => {
     const response = await axios.post(
-      `http://localhost:8000/users/${userId}/cart`,
+      `${baseUrl}/users/${userId}/cart`,
       {
         productId,
       }
