@@ -3,6 +3,7 @@ import {
   createAsyncThunk,
   SerializedError,
 } from "@reduxjs/toolkit";
+
 import { ProductsState, Product } from "../../types/type";
 import { fetchProductsApi } from "../thunk/productApt";
 

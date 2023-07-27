@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import { generateToken } from "../services/users";
 
+import { generateToken } from "../services/users";
 import User, { UserDocument } from "../models/user";
 
 

@@ -28,22 +28,24 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Routes>
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/products/:id" element={<ProductDetailsPage />} />
-        <Route path="/products" element={<Productspage />} />
-        <Route path="/Wishlist" element={<Wishlist />} />
-        <Route path="/Checkout" element={<Checkout />} />
-        <Route
-          path="/user-profile"
-          element={<PrivateRoute element={<UserProfile />} />}
-        />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/" element={<Home />} />
-<Route path="/about" element={<About />} />
-      </Routes>
-      <Footer />
+      <div className="main-content"> 
+        <Routes>
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/products/:id" element={<ProductDetailsPage />} />
+          <Route path="/products" element={<Productspage />} />
+          <Route path="/Wishlist" element={<Wishlist />} />
+          <Route path="/Checkout" element={<Checkout />} />
+          <Route
+            path="/user-profile"
+            element={<PrivateRoute element={<UserProfile />} />}
+          />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }

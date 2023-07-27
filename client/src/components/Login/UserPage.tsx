@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mui/material";
+
 import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../redux/store";
 import { selectUser, logoutAndClearData } from "../../redux/slices/user";
@@ -22,7 +23,6 @@ function UserPage() {
 
   return (
     <div>
-      <h2>User Information</h2>
       <p>Username: {user.username}</p>
       <p>Email: {user.email}</p>
       <Button onClick={handleLogout}>Logout</Button>

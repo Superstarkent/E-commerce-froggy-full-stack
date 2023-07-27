@@ -1,4 +1,3 @@
-// product model
 import mongoose, { Collection, Document } from "mongoose";
 
 export type ProductDocument = Document & {

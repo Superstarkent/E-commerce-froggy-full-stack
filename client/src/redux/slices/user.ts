@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { signupAsync, loginAsync, getUserAsync } from "../thunk/userThunk";
 import { clearCart } from "./cart";
 import { clearFavorites } from "./favorites";

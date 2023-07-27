@@ -1,4 +1,3 @@
-// product services
 import Product, { ProductDocument } from "../models/Product";
 
 export const createProductService = async (

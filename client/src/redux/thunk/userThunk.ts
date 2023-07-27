@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
+
 import { CartItem, SignupData, LoginData } from "../../types/type";
 import { RootState } from "../store";
 import { setUserId as setCartUserId } from "../slices/cart";

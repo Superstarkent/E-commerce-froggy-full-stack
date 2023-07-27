@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+import Grid from "@mui/material/Grid";
 import { useSelector, useDispatch } from "react-redux";
+
 import { fetchProducts } from "../../redux/slices/products";
 import { RootState, AppDispatch } from "../../redux/store";
 import ProductItem from "./ProductItem";
-import Grid from "@mui/material/Grid";
+
 
 function Products() {
   const dispatch = useDispatch<AppDispatch>();

@@ -1,14 +1,15 @@
-// src/redux/store.ts
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import { localStorageMiddleware } from "./middleware"; // Import middleware
+import storage from "redux-persist/lib/storage"; 
+import { combineReducers } from "@reduxjs/toolkit";
+
+import { localStorageMiddleware } from "./middleware"; 
 import userReducer from "./slices/user";
 import cartReducer from "./slices/cart";
 import favoritesReducer from "./slices/favorites";
 import productDetailsReducer from "./slices/productDetails";
 import productsReducer from "./slices/products";
-import { combineReducers } from "@reduxjs/toolkit";
+
 
 const persistConfig = {
   key: "root",
@@ -29,7 +30,7 @@ const persistedReducer = persistReducer(
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(localStorageMiddleware), // Apply middleware
+    getDefaultMiddleware().concat(localStorageMiddleware), 
 });
 
 export const persistor = persistStore(store);
