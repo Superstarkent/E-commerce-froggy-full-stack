@@ -3,10 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Box, Button, Typography } from "@mui/material";
 
 import CartItem from "./CartItem";
-import { RootState } from "../../redux/store";
+import { AppDispatch, RootState } from "../../redux/store";
 import { clearCart } from "../../redux/slices/cart";
 import { saveUserDataToLocalStorage } from "../../redux/slices/user";
-import { AppDispatch } from "../../redux/store";
 
 const Cart: React.FC = () => {
   const cart = useSelector((state: RootState) => state.cart.items);
