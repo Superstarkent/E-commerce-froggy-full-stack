@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
             <span>Student Discount</span>
           </li>
           <li>
-            <span>Bulk orders</span>
+            <span>Bulk orderss</span>
           </li>
         </ul>
         <ul>
